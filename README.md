@@ -12,10 +12,10 @@ Un proyecto cuyas características varían del modelo original pero que cumple c
 - **GitHub Pages** - Para desplegar el proyecto en línea.
 - **JavaScript** - Usos básicos de los scripts para un funcionamiento más avanzado de la página.
 
-- ## ## Proyecto en Vivo
+- ### Proyecto en Vivo
 
   Visualización del proyecto (despliegue de la página): https://mafturner.github.io/web_project_around/
 
-  ### ## Áreas de oportunidad
+  ### Áreas de oportunidad
 
   Continuar con el aprendizaje.
