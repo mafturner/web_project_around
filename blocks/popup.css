@@ -1,0 +1,132 @@
+.popup {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 1280px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.popup__close {
+  align-self: flex-start;
+  flex-direction: row-reverse;
+  background-color: rgba(0, 0, 0, 0);
+  height: 40px;
+  width: 40px;
+  background-image: url(../images/close-icon.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+}
+
+.popup__close:hover {
+  opacity: 60%;
+  cursor: pointer;
+}
+
+.popup__content {
+  display: flex;
+  height: 410px;
+  width: 510px;
+  border-radius: 10px;
+
+  color: #000000;
+}
+
+.form {
+  display: flex;
+  margin-top: 40px;
+  height: 258px;
+  width: 358px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 36px 36px;
+  flex-direction: column;
+}
+
+.form__title {
+  margin: 0;
+  width: 358px;
+  margin-bottom: 24px;
+}
+
+.form__input {
+  margin-top: 30px;
+  padding: 0;
+  height: 27px;
+  width: 358px;
+  border: none;
+  border-bottom: 2px solid #c4c4c4;
+}
+
+.form__submit {
+  margin-top: 48px;
+  padding: 0;
+  height: 50px;
+  width: 358px;
+  background-color: #ffffff;
+  border: 2px solid #c4c4c4;
+  color: #c4c4c4;
+}
+
+/*.loader {
+  display: flex;
+  align-self: center;
+  position: fixed;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #C4C4C4;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+.loader__circle{
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}*/
+
+@media screen and (max-width: 768px) {
+  .popup {
+    justify-content: center;
+    width: 768px;
+    align-content: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popup {
+    width: 320px;
+  }
+
+  .popup__content {
+    width: 282px;
+    left: auto;
+  }
+
+  .form {
+    padding: 25px 22px 25px 22px;
+    width: 282px;
+  }
+
+  .form__title {
+    width: 238px;
+  }
+
+  .form__input {
+    width: 238px;
+  }
+
+  .form__submit {
+    width: 238px;
+  }
+}

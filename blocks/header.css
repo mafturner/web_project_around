@@ -1,0 +1,42 @@
+.header {
+  margin: 45px 200px 0 200px;
+  /*padding-top: 45px;*/
+  width: 880px;
+}
+
+.header__title {
+  height: 33px;
+  width: 173px;
+}
+
+.header__line {
+  margin-top: 41px;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    margin: 0 93.5px 0 93.5px;
+    width: 581px;
+  }
+
+  .header__line {
+    width: 581px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    margin: 0;
+    width: 320px;
+    padding-top: 28px;
+  }
+
+  .header__line {
+    width: 320px;
+  }
+}
