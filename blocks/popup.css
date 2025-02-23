@@ -1,132 +1,129 @@
 .popup {
-  display: none;
   position: fixed;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 1280px;
-  height: 100%;
   top: 0;
   left: 0;
-  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 
-.popup__close {
-  align-self: flex-start;
-  flex-direction: row-reverse;
-  background-color: rgba(0, 0, 0, 0);
+.popup__container {
+  max-width: 430px;
+  width: 100%;
+  max-height: 330px;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.popup__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup__form-title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  margin: 0;
+  margin-left: 36px;
+  margin-top: 34px;
+  margin-bottom: 54px;
+}
+
+.popup__form-name {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  max-width: 358px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.popup__form-occupation {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  max-width: 358px;
+  width: 100%;
+  margin-bottom: 48px;
+}
+
+.popup__form-button {
+  background: #000000;
+  border-radius: 2px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+  max-width: 358px;
+  width: 100%;
+  height: 56px;
+}
+
+.popup_opened {
+  display: flex;
+}
+
+.popup__button-close {
   height: 40px;
-  width: 40px;
-  background-image: url(../images/close-icon.png);
+  transform: rotate(-45deg);
+  background-image: url("../images/cross.png");
   background-position: center;
   background-repeat: no-repeat;
-  border: none;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 350px;
 }
 
-.popup__close:hover {
-  opacity: 60%;
-  cursor: pointer;
+.popup__button-close:hover {
+  opacity: 0.8;
 }
 
-.popup__content {
-  display: flex;
-  height: 410px;
-  width: 510px;
-  border-radius: 10px;
-
-  color: #000000;
-}
-
-.form {
-  display: flex;
-  margin-top: 40px;
-  height: 258px;
-  width: 358px;
-  border-radius: 10px;
-  background-color: #ffffff;
-  color: #000000;
-  padding: 36px 36px;
-  flex-direction: column;
-}
-
-.form__title {
-  margin: 0;
-  width: 358px;
-  margin-bottom: 24px;
-}
-
-.form__input {
-  margin-top: 30px;
-  padding: 0;
-  height: 27px;
-  width: 358px;
-  border: none;
-  border-bottom: 2px solid #c4c4c4;
-}
-
-.form__submit {
-  margin-top: 48px;
-  padding: 0;
-  height: 50px;
-  width: 358px;
-  background-color: #ffffff;
-  border: 2px solid #c4c4c4;
-  color: #c4c4c4;
-}
-
-/*.loader {
-  display: flex;
-  align-self: center;
-  position: fixed;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #C4C4C4;
-  width: 30px;
-  height: 30px;
-  animation: spin 2s linear infinite;
-}
-
-.loader__circle{
-  display: none;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}*/
-
-@media screen and (max-width: 768px) {
-  .popup {
-    justify-content: center;
-    width: 768px;
-    align-content: center;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .popup {
-    width: 320px;
+@media screen and (max-width: 880px) {
+  .popup_opened {
+    flex-direction: column-reverse;
   }
 
-  .popup__content {
-    width: 282px;
-    left: auto;
+  .popup__container {
+    max-width: 282px;
+    width: 100%;
   }
 
-  .form {
-    padding: 25px 22px 25px 22px;
-    width: 282px;
+  .popup__form-button {
+    max-width: 238px;
+    width: 100%;
+    height: 46px;
   }
 
-  .form__title {
-    width: 238px;
+  .popup__form-name {
+    max-width: 238px;
+    width: 100%;
   }
 
-  .form__input {
-    width: 238px;
+  .popup__form-occupation {
+    max-width: 238px;
+    width: 100%;
   }
 
-  .form__submit {
-    width: 238px;
+  .popup__button-close {
+    margin-left: 260px;
+    margin-bottom: 0;
   }
 }

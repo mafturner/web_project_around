@@ -3,158 +3,150 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Places around US" />
+    <meta name="keywords" content="American places" />
     <meta name="author" content="Fernanda Baeza" />
-    <meta name="description" content="Lugares alrededor de México" />
-    <meta name="keywords" content="Lugares emblemáticos de México" />
-    <title>Alrededor de México</title>
-    <link rel="shortcut icon" href="./favicon.ico" />
+    <title>Around The USA</title>
+    <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
-
   <body>
-    <div class="body">
-      <div class="page">
-        <header class="header">
-          <img src="./images/Vector.png" alt="Logo" class="header__logo" />
-          <img src="./images/Line.png" alt="Line" class="header__line" />
-        </header>
-
-        <main class="content">
-          <section class="profile">
-            <div class="profile__content">
+    <div class="page">
+      <header class="header">
+        <img class="header__logo" src="./images/header.png" alt="logo" />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <div class="profile__content">
+            <div class="profile__info">
               <div class="profile__avatar">
                 <img
-                  src="./images/avatar.png"
-                  alt="Foto de Fernanda Baeza"
-                  class="profile__image"
+                  src="./images/photo-profile.png"
+                  alt="avatar"
+                  class="profile__content-avatar-image"
                 />
               </div>
-              <div class="profile__info">
-                <h1 class="profile__title">Fernanda Baeza</h1>
-                <button class="profile__edit"></button>
-                <p class="profile__text">Exploradora</p>
+              <div class="profile__details">
+                <h1 class="profile__details-name">Jacques Cousteau</h1>
+                <p class="profile__details-description">Explorador</p>
               </div>
+              <button class="profile__info-button"></button>
             </div>
-            <button class="profile__add">+</button>
-          </section>
-
-          <section class="elements">
-            <div class="element">
-              <div class="element__rectangle">
-                <img
-                  src="./images/prismas.png"
-                  alt="Foto de los Prismas Basálticos"
-                  class="element__image"
-                />
-                <div class="element__content">
-                  <p class="element__text">Prismas</p>
-                  <button class="element__button"></button>
-                </div>
-              </div>
+          </div>
+          <button class="profile__info-button-add"></button>
+        </section>
+        <section class="gallery">
+          <div class="gallery__card">
+            <img
+              class="gallery__card-image"
+              src="./images/yosemite.jpg"
+              alt="Valle de Yosemite"
+            />
+            <div class="gallery__card-text">
+              <p class="gallery__card-name">Valle de Yosemite</p>
+              <img class="gallery__card-like" src="images/like.svg" />
             </div>
-
-            <div class="element">
-              <div class="element__rectangle">
-                <img
-                  src="./images/pozas.png"
-                  alt="Foto dee las Pozas"
-                  class="element__image"
-                />
-                <div class="element__content">
-                  <p class="element__text">Pozas de EJ</p>
-                  <button class="element__button"></button>
-                </div>
-              </div>
+          </div>
+          <div class="gallery__card">
+            <img
+              class="gallery__card-image"
+              src="./images/louise.png"
+              alt="Lago Louise"
+            />
+            <div class="gallery__card-text">
+              <p class="gallery__card-name">Lago Louise</p>
+              <img class="gallery__card-like" src="./images/like.svg" />
             </div>
-
-            <div class="element">
-              <div class="element__rectangle">
-                <img
-                  src="./images/cueva.png"
-                  alt="Foto del Sótano de las Golondrinas"
-                  class="element__image"
-                />
-                <div class="element__content">
-                  <p class="element__text">Sótano Golon</p>
-                  <button class="element__button"></button>
-                </div>
-              </div>
+          </div>
+          <div class="gallery__card">
+            <img
+              class="gallery__card-image"
+              src="./images/montanas-calvas.png"
+              alt="Montañas Calvas"
+            />
+            <div class="gallery__card-text">
+              <p class="gallery__card-name">Montañas Calvas</p>
+              <img
+                class="gallery__card-like"
+                src="./images/like.svg"
+                alt="Corazon de like"
+              />
             </div>
-
-            <div class="element">
-              <div class="element__rectangle">
-                <img
-                  src="./images/sierra.png"
-                  alt="Foto de Sierra Gorda"
-                  class="element__image"
-                />
-                <div class="element__content">
-                  <p class="element__text">Sierra Gorda</p>
-                  <button class="element__button"></button>
-                </div>
-              </div>
+          </div>
+          <div class="gallery__card">
+            <img
+              class="gallery__card-image"
+              src="./images/latemar.png"
+              alt="Latemar"
+            />
+            <div class="gallery__card-text">
+              <p class="gallery__card-name">Latemar</p>
+              <img
+                class="gallery__card-like"
+                src="./images/like.svg"
+                alt="Corazon de like"
+              />
             </div>
-
-            <div class="element">
-              <div class="element__rectangle">
-                <img
-                  src="./images/nevado.png"
-                  alt="Foto del Nevado de Toluca"
-                  class="element__image"
-                />
-                <div class="element__content">
-                  <p class="element__text">Nevado de Toluca</p>
-                  <button class="element__button"></button>
-                </div>
-              </div>
+          </div>
+          <div class="gallery__card">
+            <img
+              class="gallery__card-image"
+              src="./images/vanois.png"
+              alt="Vanois National..."
+            />
+            <div class="gallery__card-text">
+              <p class="gallery__card-name">Vanois National Park</p>
+              <img
+                class="gallery__card-like"
+                src="./images/like.svg"
+                alt="Corazon de like"
+              />
             </div>
-
-            <div class="element">
-              <div class="element__rectangle">
-                <img
-                  src="./images/rio.png"
-                  alt="Foto del Río Secreto"
-                  class="element__image"
-                />
-                <div class="element__content">
-                  <p class="element__text">Río Secreto</p>
-                  <button class="element__button"></button>
-                </div>
-              </div>
+          </div>
+          <div class="gallery__card">
+            <img
+              class="gallery__card-image"
+              src="./images/braies.png"
+              alt="Lago di Braes"
+            />
+            <div class="gallery__card-text">
+              <p class="gallery__card-name">Lago di Braes</p>
+              <img
+                class="gallery__card-like"
+                src="./images/like.svg"
+                alt="Corazon de like"
+              />
             </div>
-          </section>
-        </main>
-
-        <footer class="footer">
-          <p class="footer__copyright">&copy; 2025 Around Mexico</p>
-        </footer>
-
+          </div>
+        </section>
         <section class="popup">
-          <div class="popup__content">
-            <form class="form">
-              <h2 class="form__title">Editar perfil</h2>
+          <div class="popup__container">
+            <h2 class="popup__form-title">Editar Perfil</h2>
+            <form class="popup__form">
               <input
-                class="form__input form__input_name"
+                class="popup__form-name"
                 type="text"
+                id="name"
+                name="name"
                 placeholder="Nombre"
               />
               <input
-                class="form__input form__input_about"
+                class="popup__form-occupation"
                 type="text"
-                placeholder="Acerca de mí"
+                id="occupation"
+                name="occupation"
+                placeholder="Acerca de mi"
               />
-              <button type="button" class="form__submit">Guardar</button>
-              <div class="loader" id="loader">
-                <div class="loader__id" id="loader__circle"></div>
-              </div>
+              <button class="popup__form-button">Guardar</button>
             </form>
-
-            <button class="popup__close"></button>
           </div>
+          <div class="popup__button-close"></div>
         </section>
-      </div>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2025 Around The U.S.</p>
+      </footer>
     </div>
-
     <script src="./scripts/index.js" defer></script>
   </body>
 </html>
