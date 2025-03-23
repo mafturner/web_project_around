@@ -1,111 +1,126 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="social network" />
+    <meta name="description" content="Alrededor de los EE.UU" />
     <meta name="keywords" content="Fotografía, Redes Sociales" />
     <meta name="author" content="Fernanda Baeza" />
     <title>Around the USA</title>
+
     <link rel="stylesheet" href="./pages/index.css" />
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="shortcut icon" href="./favicon.ico.svg" />
   </head>
-  <body>
+  <body class="body">
     <div class="page">
       <header class="header">
-        <img class="header__logo" src="./images/header.png" alt="logo" />
+        <img src="./favicon.ico.svg" alt="logo vector" class="header__logo" />
+        <img src="./images/Line.svg" alt="linea vector" class="header__line" />
       </header>
-      <main class="content">
-        <section class="profile">
-          <div class="profile__content">
-            <div class="profile__info">
-              <div class="profile__avatar">
-                <img
-                  src="./images/photo-profile.png"
-                  alt="avatar"
-                  class="profile__content-avatar-image"
-                />
-              </div>
-              <div class="profile__details">
-                <h1 class="profile__details-name">Jacques Cousteau</h1>
-                <p class="profile__details-description">Explorador</p>
-              </div>
-              <button class="profile__info-button"></button>
+      <main class="main">
+        <section class="profile" id="profile">
+          <div class="profile__avatar">
+            <img
+              src="./images/image.jpg"
+              alt="img profile"
+              class="profile__avatar-image"
+            />
+          </div>
+          <div class="profile__info">
+            <h1 class="profile__name" id="profile-name">Jacques Cousteau</h1>
+            <p class="profile__job" id="profile-job">Explorador</p>
+            <button class="profile__edit-button"></button>
+          </div>
+          <button class="profile__add-button">
+            <img src="./images/Add Button.png" alt="Boton agregar" />
+          </button>
+        </section>
+        <!---Las cartas-->
+        <section class="gallery" id="gallery"></section>
+        <template class="gallery__template" id="template">
+          <div class="gallery__card">
+            <img class="gallery__card-image" src="" alt="" />
+            <button type="button" class="gallery__card-delete"></button>
+            <div class="gallery__card-text">
+              <p class="gallery__card-name"></p>
+              <img
+                class="gallery__card-icon"
+                src="./images/Group.png"
+                alt="corazon"
+              />
             </div>
           </div>
-          <button class="profile__info-button-add"></button>
-        </section>
-        <section class="gallery"></section>
+        </template>
+        <!---Sección editar perfil-->
         <section class="popup">
-          <div class="popup__container">
+          <form class="popup__form">
             <h2 class="popup__form-title">Editar Perfil</h2>
-            <form class="popup__form">
-              <input
-                class="popup__form-name"
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Nombre"
-              />
-              <input
-                class="popup__form-occupation"
-                type="text"
-                id="occupation"
-                name="occupation"
-                placeholder="Acerca de mi"
-              />
-              <button class="popup__form-button">Guardar</button>
-            </form>
-          </div>
-          <div class="popup__button-close"></div>
+            <input
+              class="popup__form-input popup__form-input-name"
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Nombre"
+              value="Jacques Cousteau"
+              required
+            />
+            <input
+              class="popup__form-input popup__form-input-job"
+              type="text"
+              id="job"
+              name="job"
+              placeholder="Acerca de mi"
+              value="Explorador"
+              required
+            />
+            <button type="submit" class="popup__submit-button">Guardar</button>
+            <button type="button" class="popup__button-close"></button>
+          </form>
         </section>
-        <section class="popup-add">
-          <div class="popup-add__container">
-            <h2 class="popup-add__form-title">Nuevo Lugar</h2>
-            <form class="popup-add__form">
-              <input
-                class="popup-add__form-name"
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Título"
-              />
-              <input
-                class="popup-add__form-occupation"
-                type="url"
-                id="occupation"
-                name="occupation"
-                placeholder="Enlace a la imagen"
-              />
-              <button class="popup-add__form-button">Guardar</button>
-            </form>
-          </div>
-          <div class="popup-add__button-close"></div>
+        <!----Nuevo lugar-->
+        <section class="popup__add">
+          <form class="popup__add-form">
+            <h2 class="popup__add-form-title">Nuevo Lugar</h2>
+            <input
+              class="popup__add-form-input popup__add-form-input-name"
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Título"
+              value="Título"
+              required
+            />
+            <input
+              class="popup__add-form-input popup__add-form-input-image"
+              type="text"
+              id="enlace"
+              name="enlace"
+              placeholder="Enlace a la imagen"
+              value="Enlace a la imagen"
+              required
+            />
+            <button type="submit" class="popup__add-submit-button">
+              Crear
+            </button>
+            <button type="button" class="popup__add-button-close"></button>
+          </form>
         </section>
+        <!---Popup img grande-->
         <div class="popup__image">
           <div class="popup__image-container">
             <div class="popup__image-button-close"></div>
             <img class="popup__img" src="" alt="" />
-            <div class="popup__container-text">
+            <div class="popup__image-text">
               <p class="popup__text"></p>
             </div>
           </div>
         </div>
       </main>
-      <footer class="footer">
-        <p class="footer__copyright">&copy; 2025 Around The U.S.</p>
-      </footer>
     </div>
-    <template class="gallery__template" id="template">
-      <div class="gallery__card">
-        <img class="gallery__card-image" src="" alt="" />
-        <button type="button" class="gallery__card-delete"></button>
-        <div class="gallery__card-text">
-          <p class="gallery__card-name"></p>
-          <img class="gallery__card-like" src="images/like.svg" />
-        </div>
-      </div>
-    </template>
-    <script src="./scripts/index.js" defer></script>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2025 Around The U.S.</p>
+    </footer>
+
+    <script src="./scripts/index.js" type=""></script>
   </body>
 </html>
