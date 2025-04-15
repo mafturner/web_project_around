@@ -1,28 +1,45 @@
 # Tripleten web_project_around
 
-Proyecto 8 - Lógica y métodos de programación en JavaScript
+## Red Social para Fotógrafos
 
-El objetivo de este proyecto es desarrollar e implementar una lógica de programación eficiente en JavaScript para gestionar dinámicamente tarjetas de contenido. Esto incluye su creación, eliminación y la interacción mediante botones de "like" y "dislike", optimizando así la experiencia del usuario.
+### Descripción del Proyecto
 
-A lo largo del desarrollo, se fortalecieron habilidades clave en el manejo de Arrays para almacenar y gestionar las tarjetas, el uso de Funciones para modularizar y estructurar el código de manera eficiente, y la Manipulación del DOM para actualizar la interfaz de usuario en tiempo real, garantizando una experiencia fluida e interactiva.
+Este proyecto consiste en la creación de una red social para fotógrafos. El objetivo principal es proporcionar una plataforma donde los fotógrafos puedan compartir y editar su información de perfil, interactuar con otros fotógrafos y dar "me gusta" a las fotos.
 
-## Tecnologías utilizadas
+### Funcionalidad
 
-- **JavaScript** para gestionar dinámicamente el contenido y manipular el DOM de manera eficiente.
-- **@font-face** para gestionar dinámicamente el contenido y manipular el DOM de manera eficiente.
-- **Figma** como herramienta de diseño para definir la tipografía, dimensiones y distribución de la interfaz.
-- **Media Queries** para garantizar un diseño responsivo y adaptable a distintos dispositivos y resoluciones de pantalla.
-- **GitHub** para el control de versiones, colaboración en equipo y alojamiento del código de manera organizada.
-- **CSS Grid Layout** para estructurar la interfaz de forma flexible y optimizada.
-- **Sombreados y degradados en CSS** ara mejorar la estética y aportar profundidad al diseño visual.
-- **Arrays** para almacenar, organizar y gestionar dinámicamente las tarjetas de contenido.
-- **Funciones en JavaScript** para modularizar el código y facilitar la creación, eliminación e interacción con las tarjetas.
-- **Manipulación del DOM** para actualizar y reflejar los cambios en la interfaz en tiempo real, mejorando la experiencia del usuario.
+El sitio web permite a los usuarios editar su perfil con un nombre y una descripción, cambiar el estado del botón de "me gusta" en las fotos y actualizar la información del perfil en tiempo real utilizando un modal para la edición. Además, se implementó una funcionalidad de validación de formularios para garantizar que los datos ingresados sean correctos antes de ser enviados.
 
-## Proyecto en Vivo
+### Validación de Formularios
 
-Visualización del proyecto (despliegue de la página): https://mafturner.github.io/web_project_around/
+En este proyecto, se implementó una validación de formularios utilizando JavaScript. El objetivo de esta funcionalidad es asegurar que los datos ingresados en los formularios sean válidos antes de que los usuarios puedan enviar sus datos. Se verifican los campos de texto de los formularios y se muestra un mensaje de error si alguno de los campos no cumple con los requisitos establecidos (como longitud mínima o formato válido).
 
-## Áreas de oportunidad
+La validación se realiza en tiempo real mientras el usuario interactúa con los campos del formulario, proporcionando una retroalimentación instantánea. Si un campo es válido, el error se oculta; si es inválido, se muestra el mensaje de error correspondiente.
 
-Continuar con el aprendizaje.
+Los formularios son manejados de manera flexible, lo que permite adaptar fácilmente la validación a diferentes formularios dentro de el sitio web. Este enfoque mejora la experiencia del usuario al garantizar que los datos enviados sean correctos y completos.
+
+### Técnica de Módulos en JavaScript
+
+En este proyecto se implementó la técnica de módulos en JavaScript para organizar y estructurar el código de manera más eficiente. Al dividir el código en módulos independientes, se mejora la mantenibilidad y la reutilización del código, facilitando su comprensión y gestión.
+
+Cada módulo contiene funciones específicas que se importan y exportan según sea necesario, lo que reduce la complejidad del proyecto y permite que las funcionalidades se gestionen de forma modular. Este enfoque sigue la práctica de dividir el código en partes más pequeñas y manejables, lo que facilita su evolución y ampliación en el futuro.
+
+### Tecnologías y Técnicas Utilizadas
+
+En este proyecto se utilizaron las siguientes tecnologías y técnicas:
+
+- **HTML5**: Para la estructura del contenido.
+- **CSS3**: Para el diseño y la disposición de los elementos.
+- **JavaScript**: Para la interactividad y el manejo de eventos.
+- **Módulos de JavaScript**: Para organizar el código de manera modular y mejorar la reutilización.
+- **Flexbox**: Para crear diseños flexibles y alineados.
+- **Grid Layout**: Para organizar el contenido en un diseño de cuadrícula eficiente y responsivo.
+- **Margin y Padding**: Para el espaciamiento y ajuste de los elementos.
+- **Object-fit**: Específicamente la regla `object-fit: cover;` para ajustar imágenes dentro de sus contenedores sin distorsionarlas.
+- **Box-shadow**: Para agregar sombras y dar profundidad a los elementos.
+- **Linear Gradient**: Para aplicar gradientes de color en el fondo del botón y agregar un efecto visual atractivo.
+- **Hover**: Aplicado correctamente en imágenes y botones para mejorar la interactividad del usuario.
+- **Media Queries**: Para aplicar estilos específicos en diferentes resoluciones de pantalla y asegurar la responsividad del sitio.
+- **Git**: Para el control de versiones y gestión de ramas, permitiendo un desarrollo organizado y colaborativo.
+
+Página de Github Pages: [https://nosoyunmarinero.github.io/web_project_around/](https://nosoyunmarinero.github.io/web_project_around/)
