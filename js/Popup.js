@@ -5,7 +5,7 @@ export default class Popup {
   }
 
   // Funcion para abrir Dialogs
-  openDialog() {
+  open() {
     const dialog = document.querySelector(this._selectors.dialogID);
 
     if (dialog) {
@@ -15,7 +15,7 @@ export default class Popup {
   }
 
   // Cerrar dialog
-  closeDialog() {
+  close() {
     const dialog = document.querySelector(this._selectors.dialogID);
     if (dialog) {
       dialog.close();
@@ -36,7 +36,7 @@ export default class Popup {
   // cerrar popup con ESC
   _handleEscClose(event) {
     if (event.key === "Escape") {
-      this.closeDialog();
+      this.close();
     }
   }
 
@@ -45,14 +45,14 @@ export default class Popup {
       .querySelector(this._selectors.openButtonElement)
       .addEventListener("click", () => {
         console.log("abrir");
-        this.openDialog();
+        this.open();
       });
 
     document
       .querySelector(this._selectors.closeButtonElement)
       .addEventListener("click", () => {
         console.log("cerrar");
-        this.closeDialog();
+        this.close();
       });
 
     document.addEventListener("keydown", (event) =>
@@ -60,13 +60,15 @@ export default class Popup {
     );
 
     document.addEventListener("click", (e) => {
-      const dialog = document.getElementById(this.dialogID);
+      const dialog = document.querySelector(this._selectors.dialogID);
       if (
         dialog &&
         !dialog.contains(e.target) &&
-        !document.querySelector(this.openButtonElement).contains(e.target)
+        !document
+          .querySelector(this._selectors.openButtonElement)
+          .contains(e.target)
       ) {
-        this.closeDialog(); // Cierra el popup si se hace clic fuera
+        this.close(); // Cierra el popup si se hace clic fuera
       }
     });
   }

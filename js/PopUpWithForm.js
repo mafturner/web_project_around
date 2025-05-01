@@ -35,4 +35,8 @@ export default class PopUpWithForm extends Popup {
       });
     });
   }
+  close() {
+    super.close(); // Llama a la versión padre para cerrar el popup
+    document.querySelector(this._popUpSelector).querySelector("form").reset(); // Reinicia el formulario
+  }
 }

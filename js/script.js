@@ -126,7 +126,7 @@ const profilePopupForm = new PopUpWithForm(
   "#modal-edit",
   { dialogID: "#modal-edit" }
 );
-profilePopupForm._getInputValues();
+profilePopupForm.setEventListeners();
 
 //Instancia para popup con avatar para cambiar avatar
 const avatarPopupForm = new PopUpWithForm(
@@ -136,7 +136,7 @@ const avatarPopupForm = new PopUpWithForm(
   "#modal-avatar",
   { dialogID: "#modal-avatar" }
 );
-avatarPopupForm._getInputValues();
+avatarPopupForm.setEventListeners();
 
 // instancia user info
 const info = new UserInfo({

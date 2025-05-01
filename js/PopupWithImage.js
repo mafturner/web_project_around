@@ -50,4 +50,14 @@ export default class PopupWithImage extends Popup {
       }
     });
   } // cierra setEventListeners
+  open(image, title) {
+    const imgContainer = document.querySelector(".element__modal-image");
+    const titleContainer = document.querySelector(".element__modal-title");
+
+    imgContainer.src = image;
+    imgContainer.alt = title;
+    titleContainer.textContent = title;
+
+    super.open(); // Usa el método del padre correctamente
+  }
 } //cierra clase

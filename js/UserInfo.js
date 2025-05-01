@@ -53,7 +53,7 @@ export default class UserInfo {
     this._api.updateUserInfo(newUserData).finally(() => {
       // Restaurar el botón después de la actualización
       this._api.renderTextLoading(false, saveButtonElement);
-      profileEdit.closeDialog();
+      profileEdit.close();
     });
   }
 
@@ -108,7 +108,7 @@ export default class UserInfo {
       avatarElement.src = newAvatarData.avatarURL;
       this._api.setAvatar(newAvatarData);
       this._api.renderTextLoading(false, saveButtonElement);
-      profileEditImage.closeDialog();
+      profileEditImage.close();
     }, 2000);
   }
 }

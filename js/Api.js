@@ -19,7 +19,7 @@ export default class Api {
         // Instancia de cards iniciales
         const cardList = new Section(
           {
-            item: data,
+            items: data,
             renderer: (item) => {
               const card = new Card(
                 item,
