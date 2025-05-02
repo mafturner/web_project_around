@@ -5,8 +5,8 @@ export default class PopupWithImage extends Popup {
     super(selectors);
   }
 
-  openDialog(event) {
-    super.openDialog();
+  open(event) {
+    super.open();
 
     const clickedButton = event.target;
 
@@ -32,7 +32,7 @@ export default class PopupWithImage extends Popup {
       );
       if (openButton) {
         console.log("abrir");
-        this.openDialog(event);
+        this.open(event);
       }
 
       const closeButton = event.target.closest(
@@ -40,13 +40,13 @@ export default class PopupWithImage extends Popup {
       );
       if (closeButton) {
         console.log("cerrar");
-        this.closeDialog(event);
+        this.close(event);
       }
     });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
-        this.closeDialog();
+        this.close();
       }
     });
   } // cierra setEventListeners

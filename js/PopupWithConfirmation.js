@@ -14,8 +14,8 @@ export default class PopupWithConfirmation extends Popup {
     });
   }
 
-  openDialog(e) {
-    super.openDialog();
+  open(e) {
+    super.open();
 
     const clickedCard = e.target;
     this._clickedButton = clickedCard.closest(".element-list__item .element");
@@ -23,8 +23,8 @@ export default class PopupWithConfirmation extends Popup {
     console.log(this._clickedButtonID);
   }
 
-  closeDialog() {
-    super.closeDialog();
+  close() {
+    super.close();
   }
 
   setEventListeners() {
@@ -33,7 +33,7 @@ export default class PopupWithConfirmation extends Popup {
       const openButton = e.target.closest(this._selectors.openButtonElement);
       if (openButton) {
         console.log("abrir confirmacion");
-        this.openDialog(e);
+        this.open(e);
       }
     });
     // Cerrar dialog confirmacion
@@ -41,7 +41,7 @@ export default class PopupWithConfirmation extends Popup {
       .querySelector(this._selectors.closeButtonElement)
       .addEventListener("click", () => {
         console.log("cerrar confirmacion");
-        this.closeDialog();
+        this.close();
       });
 
     // Cerrar dialog confirmacion con escape
@@ -54,7 +54,7 @@ export default class PopupWithConfirmation extends Popup {
       .addEventListener("click", () => {
         this._api.deleteCard(this._clickedButtonID);
         this._clickedButton.remove();
-        this.closeDialog();
+        this.close();
       });
   }
 }
