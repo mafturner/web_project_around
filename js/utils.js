@@ -28,7 +28,7 @@ const addNewCard = () => {
           _id: data._id,
         },
         "#template-selector",
-        () => console.log("Click")
+        handleCardClick
       );
 
       const cardElement = card.generateCard();
@@ -41,7 +41,7 @@ const addNewCard = () => {
         formValidationImage.buttonElement
       );
       saveButtonElement.textContent = "Crear";
-      profileAdd.closeDialog();
+      profileAdd.close();
       document.querySelector("#add-card-form").reset();
     })
     .catch((err) => console.error("Error en el POST:", err));

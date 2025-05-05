@@ -5,26 +5,6 @@ export default class PopupWithImage extends Popup {
     super(selectors);
   }
 
-  open(event) {
-    super.open();
-
-    const clickedButton = event.target;
-
-    const clickedCard = clickedButton.closest(".element-list__item .element");
-
-    if (clickedCard) {
-      const imgElement = clickedCard.querySelector(".element__image").src;
-      const titleElement =
-        clickedCard.querySelector(".element__title").textContent;
-
-      const imgContainer = document.querySelector(".element__modal-image");
-      const titleContainer = document.querySelector(".element__modal-title");
-
-      imgContainer.src = imgElement;
-      titleContainer.textContent = titleElement;
-    }
-  }
-
   setEventListeners() {
     document.addEventListener("click", (event) => {
       const openButton = event.target.closest(
@@ -49,7 +29,7 @@ export default class PopupWithImage extends Popup {
         this.close();
       }
     });
-  } // cierra setEventListeners
+  }
   open(image, title) {
     const imgContainer = document.querySelector(".element__modal-image");
     const titleContainer = document.querySelector(".element__modal-title");
@@ -58,6 +38,6 @@ export default class PopupWithImage extends Popup {
     imgContainer.alt = title;
     titleContainer.textContent = title;
 
-    super.open(); // Usa el método del padre correctamente
+    super.open();
   }
-} //cierra clase
+}

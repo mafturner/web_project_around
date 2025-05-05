@@ -48,6 +48,10 @@ export class Card {
     // Id
     this._element.id = this._id;
 
+    imgElement.addEventListener("click", () => {
+      this._handleCardClick(this._image, this._title);
+    });
+
     // Like button
     const likeButton = this._element.querySelector(".element__button-like");
     const likeIcon = this._element.querySelector(".element__like-button");
