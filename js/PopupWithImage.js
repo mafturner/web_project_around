@@ -12,7 +12,16 @@ export default class PopupWithImage extends Popup {
       );
       if (openButton) {
         console.log("abrir");
-        this.open(event);
+
+        const clickedCard = openButton.closest(".element-list__item .element");
+        if (clickedCard) {
+          const imgElement = clickedCard.querySelector(".element__image");
+          const image = imgElement.src;
+          const title =
+            clickedCard.querySelector(".element__title").textContent;
+
+          this.open(image, title);
+        }
       }
 
       const closeButton = event.target.closest(
@@ -20,7 +29,7 @@ export default class PopupWithImage extends Popup {
       );
       if (closeButton) {
         console.log("cerrar");
-        this.close(event);
+        this.close();
       }
     });
 
