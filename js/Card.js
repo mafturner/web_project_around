@@ -1,76 +1,63 @@
-import Api from "./Api.js";
+// Card.js
 export class Card {
-  constructor(data, templateSelector, handleCardClick, apiInstance) {
+  constructor(data, templateSelector, handleCardClick, apiInstance, userId) {
     this._image = data.link;
     this._title = data.name;
     this._id = data._id;
-    this.isLiked = data.isLiked;
+    this._likes = data.likes || [];
+    this._userId = userId;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._clickedButton = null;
-    this._clickedButtonID = null;
-
     this._api = apiInstance;
-  }
-
-  // Cambiar like
-  toggleLike() {
-    this.isLiked = !this.isLiked;
-  }
-  deleteCard() {
-    this._clickedButton.remove();
-    this._api.deleteCard(this._clickedButtonID);
   }
 
   _getTemplate() {
     const template = document.querySelector(this._templateSelector);
-    const cardElement = template.content
-      .querySelector(".element")
-      .cloneNode(true);
-
-    return cardElement;
+    return template.content.querySelector(".element").cloneNode(true);
   }
 
   generateCard() {
     this._element = this._getTemplate();
-    // Title
-    this._element.querySelector(".element__title").textContent = this._title;
-    // Image
+    const titleElement = this._element.querySelector(".element__title");
     const imgElement = this._element.querySelector(".element__image");
+    const likeButton = this._element.querySelector(".element__button-like");
+    const likeIcon = this._element.querySelector(".element__like-button");
+
+    titleElement.textContent = this._title;
     imgElement.src = this._image;
     imgElement.alt = this._title;
-    // Id
     this._element.id = this._id;
+
+    this.isLiked = this._likes.some((user) => user._id === this._userId);
+    this.updateLikeButtonState(likeIcon);
 
     imgElement.addEventListener("click", () => {
       this._handleCardClick(this._image, this._title);
     });
 
-    // Like button
-    const likeButton = this._element.querySelector(".element__button-like");
-    const likeIcon = this._element.querySelector(".element__like-button");
-
-    // Set initial state of like button
-    this.updateLikeButtonState(likeIcon);
-
-    // Like button event listener
     likeButton.addEventListener("click", () => {
-      this.toggleLike();
+      const newIsLiked = !this.isLiked;
 
       this._api
-        .changeLikeCardStatus(this._id, this.isLiked)
+        .changeLikeCardStatus(this._id, newIsLiked)
         .then((data) => {
-          this.isLiked = data.isLiked;
-          this.updateLikeButtonState(likeIcon);
-          if (data.isLiked === true) {
-            console.log("Se likeo a la tarjeta ");
+          console.log("🛰️ Respuesta del servidor:", data);
+
+          if (!data || !data.likes || !Array.isArray(data.likes)) {
+            console.warn("⚠️ 'likes' no está presente, usando estado local.");
+            this.isLiked = newIsLiked;
           } else {
-            console.log("Se deslikeo la tarjeta");
+            this._likes = data.likes;
+            this.isLiked = this._likes.some(
+              (user) => user._id === this._userId
+            );
           }
+
+          this.updateLikeButtonState(likeIcon);
         })
         .catch((err) => {
           console.error(
-            `Error al ${this.isLiked ? "dar" : "quitar"} like a la tarjeta:`,
+            `❌ Error al ${newIsLiked ? "dar" : "quitar"} like:`,
             err
           );
         });
@@ -80,10 +67,8 @@ export class Card {
   }
 
   updateLikeButtonState(likeIcon) {
-    if (this.isLiked) {
-      likeIcon.src = "../images/heart-on.svg";
-    } else {
-      likeIcon.src = "../images/heart.svg";
-    }
+    likeIcon.src = this.isLiked
+      ? "../images/heart-on.svg"
+      : "../images/heart.svg";
   }
 }

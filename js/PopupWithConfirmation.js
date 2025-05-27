@@ -16,7 +16,7 @@ export default class PopupWithConfirmation extends Popup {
   }
 
   setEventListeners() {
-    // Abrir dialog confirmacion
+
     document.addEventListener("click", (e) => {
       const openButton = e.target.closest(this._selectors.openButtonElement);
       if (openButton) {
@@ -24,7 +24,7 @@ export default class PopupWithConfirmation extends Popup {
       }
     });
 
-    //botón de confirmación
+
     document
       .querySelector(this._selectors.confirmButtonElement)
       .addEventListener("click", () => {
@@ -33,7 +33,7 @@ export default class PopupWithConfirmation extends Popup {
           this.close();
         });
       });
-    // Cerrar dialog confirmacion
+    
     document
       .querySelector(this._selectors.closeButtonElement)
       .addEventListener("click", () => {

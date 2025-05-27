@@ -1,14 +1,12 @@
 import { Card } from "./Card.js";
-import { profileAdd, formValidationImage, apiNewCard } from "./script.js";
+import { info, profileAdd, formValidationImage, apiNewCard } from "./script.js";
 export { handleCardClick, addNewCard };
 
-//Funcion handleCardClick para la clase card
 function handleCardClick(image, title) {
   document.querySelector(".element__modal-image").src = image;
   document.querySelector(".element__modal-title").textContent = title;
 }
 
-// Funcion para agregar nuevas cards
 const addNewCard = () => {
   const newImageTitle = document.querySelector("#title").value;
   const imageURL = document.querySelector("#imageURL").value;
@@ -19,15 +17,19 @@ const addNewCard = () => {
   apiNewCard
     .addNewCard({ name: newImageTitle, link: imageURL })
     .then((data) => {
+      const userId = info.getUserId();
+
       const card = new Card(
         {
           name: data.name,
           link: data.link,
           _id: data._id,
+          likes: data.likes || [],
         },
         "#template-selector",
         handleCardClick,
-        apiNewCard
+        apiNewCard,
+        userId
       );
 
       const cardElement = card.generateCard();

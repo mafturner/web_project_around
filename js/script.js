@@ -1,4 +1,4 @@
-// Imports
+// script.js
 import FormValidator from "./FormValidator.js";
 import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
@@ -10,8 +10,8 @@ import Section from "./Section.js";
 import { Card } from "./Card.js";
 import Api from "./Api.js";
 
-// Exports para utils.js
 export {
+  info,
   profileAdd,
   formValidationImage,
   apiNewCard,
@@ -19,20 +19,19 @@ export {
   profileEditImage,
 };
 
-// API instance
 const api = new Api({
   baseUrl: "https://around-api.es.tripleten-services.com/v1",
   token: "8d9f858e-3617-4eb7-9695-9b891911083c",
 });
 
-// Instancia user info
 const info = new UserInfo({
   nameSelector: "#profile-name",
   jobSelector: "#profile-job",
   avatarSelector: ".profile__avatar",
 });
 
-// Cargar datos del servidor: usuario y tarjetas
+const apiNewCard = api;
+
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cardsData]) => {
     info.setUserInfo({
@@ -40,6 +39,8 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       job: userData.about,
       avatar: userData.avatar,
     });
+
+    info._userId = userData._id;
 
     const cardList = new Section(
       {
@@ -49,7 +50,8 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
             item,
             "#template-selector",
             handleCardClick,
-            api
+            api,
+            userData._id
           );
           const cardElement = card.generateCard();
           document.querySelector(".element-list__item").prepend(cardElement);
@@ -59,21 +61,15 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     );
     cardList.renderItems();
 
-    // Prellenar formulario
     document.querySelector("#name").value = userData.name;
     document.querySelector("#job").value = userData.about;
   })
   .catch((err) => console.error("❌ Error al cargar datos iniciales:", err));
 
-// ------------------------ INSTANCIAS ----------------------------
-
-// Instancia para agregar nuevas cards
 const imageForm = document.querySelector("#add-card-form");
 imageForm.addEventListener("submit", addNewCard);
 
-const apiNewCard = api;
-
-// Popups
+// POPUPS
 const profileEdit = new Popup({
   dialogID: "#modal-edit",
   formID: "#profile-form",
@@ -111,8 +107,7 @@ const deleteCard = new PopupWithConfirmation(
   api
 );
 
-// ------------------------ FORM VALIDATORS ------------------------
-
+// VALIDATION
 const formValidationProfile = new FormValidator("#profile-form", {
   inputSelector: ".profile__edit-form-input",
   inputErrorClass: "form__input_type_error",
@@ -136,8 +131,6 @@ const formValidationAvatar = new FormValidator("#avatar-form", {
   buttonSelector: ".profile__edit-form-button",
 });
 formValidationAvatar.enableValidation();
-
-// ------------------------ POPUP FORMS ------------------------
 
 const profilePopupForm = new PopUpWithForm(
   (inputValues) => {

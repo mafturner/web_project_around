@@ -1,17 +1,21 @@
+// UserInfo.js
 import Api from "./Api.js";
 import { profileEdit, profileEditImage } from "./script.js";
+
 export default class UserInfo {
   constructor(infoSelectors) {
     this._infoSelectors = infoSelectors;
 
-    // Intancia de la API
     this._api = new Api({
       baseUrl: "https://around-api.es.tripleten-services.com/v1",
-      headers: {
-        authorization: "354781f2-b486-4ab1-9379-468b53f9329e",
-        "Content-Type": "application/json",
-      },
+      token: "8d9f858e-3617-4eb7-9695-9b891911083c",
     });
+
+    this._userId = null;
+  }
+
+  getUserId() {
+    return this._userId;
   }
 
   getUserInfo() {
@@ -21,11 +25,10 @@ export default class UserInfo {
     const jobElement = document.querySelector(this._infoSelectors.jobSelector);
 
     if (nameElement && jobElement) {
-      const currentInfo = {
+      return {
         name: nameElement.textContent,
         job: jobElement.textContent,
       };
-      return currentInfo;
     }
   }
 
@@ -46,12 +49,13 @@ export default class UserInfo {
       avatarElement.src = newUserData.avatar;
     }
 
-    // Mostrar estado de carga en el botón
+    if (newUserData._id) {
+      this._userId = newUserData._id;
+    }
+
     this._api.renderTextLoading(true, saveButtonElement);
 
-    // Actualización del servidor
     this._api.updateUserInfo(newUserData).finally(() => {
-      // Restaurar el botón después de la actualización
       this._api.renderTextLoading(false, saveButtonElement);
       profileEdit.close();
     });
@@ -61,14 +65,13 @@ export default class UserInfo {
     this._api
       .getUserInfo()
       .then((data) => {
-        // Actualizar la información del perfil en la página
         this.setUserInfo({
           name: data.name,
           job: data.about,
           avatar: data.avatar,
+          _id: data._id,
         });
 
-        // Actualizar los valores del formulario con la información del perfil
         this._updateFormValues(data, formValidator);
       })
       .catch((error) => {
@@ -84,7 +87,6 @@ export default class UserInfo {
       inputName.value = data.name;
       inputJob.value = data.about;
 
-      // Si se proporcionó un validador, usarlo en lugar de crear uno nuevo
       if (formValidator) {
         formValidator.toggleSaveButton(
           formValidator.inputList,
@@ -98,12 +100,10 @@ export default class UserInfo {
     const avatarElement = document.querySelector(
       this._infoSelectors.avatarSelector
     );
-
     const saveButtonElement = document.querySelector("#save-button-avatar");
 
     this._api.renderTextLoading(true, saveButtonElement);
 
-    // Agregar un retraso para que el texto "Guardando" sea visible por más tiempo
     setTimeout(() => {
       avatarElement.src = newAvatarData.avatarURL;
       this._api.setAvatar(newAvatarData);

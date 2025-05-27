@@ -1,8 +1,8 @@
+// Api.js
 import { Card } from "./Card.js";
 import Section from "./Section.js";
 import { handleCardClick } from "./utils.js";
 
-// class
 export default class Api {
   constructor({ baseUrl, token }) {
     this._baseUrl = baseUrl;
@@ -14,27 +14,10 @@ export default class Api {
       headers: {
         authorization: this._token,
       },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // Instancia de cards iniciales
-        const cardList = new Section(
-          {
-            items: data,
-            renderer: (item) => {
-              const card = new Card(
-                item,
-                "#template-selector",
-                handleCardClick
-              );
-              const cardElement = card.generateCard();
-              cardList.addItem(cardElement);
-            },
-          },
-          ".element-list__item"
-        );
-        cardList.renderItems();
-      });
+    }).then((res) => {
+      if (!res.ok) throw new Error(`Error: ${res.status}`);
+      return res.json();
+    });
   }
 
   addNewCard({ name, link }) {
@@ -73,9 +56,10 @@ export default class Api {
         name: newUserData.name,
         about: newUserData.job,
       }),
-    })
-      .then((res) => res.json())
-      .finally(() => {});
+    }).then((res) => {
+      if (!res.ok) throw new Error(`Error: ${res.status}`);
+      return res.json();
+    });
   }
 
   setAvatar(newAvatarData) {
@@ -88,9 +72,10 @@ export default class Api {
       body: JSON.stringify({
         avatar: newAvatarData.avatarURL,
       }),
-    })
-      .then((res) => res.json())
-      .then((data) => {});
+    }).then((res) => {
+      if (!res.ok) throw new Error(`Error: ${res.status}`);
+      return res.json();
+    });
   }
 
   deleteCard(cardId) {
@@ -99,24 +84,24 @@ export default class Api {
       headers: {
         authorization: this._token,
       },
-    })
-      .then((res) => res.json())
-      .catch((err) => console.log("Error al eliminar la tarjeta:", err));
+    }).then((res) => {
+      if (!res.ok) throw new Error(`Error al eliminar tarjeta: ${res.status}`);
+      return res.json();
+    });
   }
 
   changeLikeCardStatus(cardId, isLiked) {
     const method = isLiked ? "PUT" : "DELETE";
-    const body = isLiked ? JSON.stringify({ isLiked: true }) : null;
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method,
       headers: {
         authorization: this._token,
-        "Content-Type": "application/json",
       },
-    }).then((res) => res.json());
+    }).then((res) => {
+      if (!res.ok) throw new Error(`Error en like: ${res.status}`);
+      return res.json();
+    });
   }
-
-  //Funciones de carga
 
   renderTextLoading(isLoading, saveButtonElement) {
     saveButtonElement.textContent = isLoading ? "Guardando..." : "Guardar";

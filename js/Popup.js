@@ -68,7 +68,7 @@ export default class Popup {
           .querySelector(this._selectors.openButtonElement)
           .contains(e.target)
       ) {
-        this.close(); // Cierra el popup si se hace clic fuera
+        this.close();
       }
     });
   }
