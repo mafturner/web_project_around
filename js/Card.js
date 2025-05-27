@@ -1,6 +1,6 @@
 import Api from "./Api.js";
 export class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, handleCardClick, apiInstance) {
     this._image = data.link;
     this._title = data.name;
     this._id = data._id;
@@ -10,13 +10,7 @@ export class Card {
     this._clickedButton = null;
     this._clickedButtonID = null;
 
-    this._api = new Api({
-      baseUrl: "https://around-api.es.tripleten-services.com/v1",
-      headers: {
-        authorization: "354781f2-b486-4ab1-9379-468b53f9329e",
-        "Content-Type": "application/json",
-      },
-    });
+    this._api = apiInstance;
   }
 
   // Cambiar like

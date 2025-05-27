@@ -14,12 +14,10 @@ const addNewCard = () => {
   const imageURL = document.querySelector("#imageURL").value;
   const saveButtonElement = document.querySelector("#save-button-add");
 
-  apiNewCard._options.name = newImageTitle;
-  apiNewCard._options.link = imageURL;
+  apiNewCard.renderTextLoading(true, saveButtonElement);
 
-  saveButtonElement.textContent = "Creando...";
   apiNewCard
-    .addNewCard()
+    .addNewCard({ name: newImageTitle, link: imageURL })
     .then((data) => {
       const card = new Card(
         {
@@ -28,7 +26,8 @@ const addNewCard = () => {
           _id: data._id,
         },
         "#template-selector",
-        handleCardClick
+        handleCardClick,
+        apiNewCard
       );
 
       const cardElement = card.generateCard();
@@ -40,9 +39,12 @@ const addNewCard = () => {
         formValidationImage.inputList,
         formValidationImage.buttonElement
       );
-      saveButtonElement.textContent = "Crear";
-      profileAdd.close();
+
       document.querySelector("#add-card-form").reset();
+      profileAdd.close();
     })
-    .catch((err) => console.error("Error en el POST:", err));
+    .catch((err) => console.error("Error en el POST:", err))
+    .finally(() => {
+      apiNewCard.renderTextLoading(false, saveButtonElement);
+    });
 };

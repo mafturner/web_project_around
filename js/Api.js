@@ -4,14 +4,15 @@ import { handleCardClick } from "./utils.js";
 
 // class
 export default class Api {
-  constructor(options) {
-    this._options = options;
+  constructor({ baseUrl, token }) {
+    this._baseUrl = baseUrl;
+    this._token = token;
   }
 
   getInitialCards() {
-    return fetch(`${this._options.baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: {
-        authorization: this._options.headers.authorization,
+        authorization: this._token,
       },
     })
       .then((res) => res.json())
@@ -36,14 +37,14 @@ export default class Api {
       });
   }
 
-  addNewCard() {
-    return fetch(`${this._options.baseUrl}/cards`, {
+  addNewCard({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._options.headers,
-      body: JSON.stringify({
-        name: this._options.name,
-        link: this._options.link,
-      }),
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, link }),
     }).then((res) => {
       if (!res.ok) throw new Error(`Error: ${res.status}`);
       return res.json();
@@ -51,9 +52,9 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this._options.baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: {
-        authorization: this._options.headers.authorization,
+        authorization: this._token,
       },
     }).then((res) => {
       if (!res.ok) throw new Error(`Error: ${res.status}`);
@@ -62,10 +63,10 @@ export default class Api {
   }
 
   updateUserInfo(newUserData) {
-    return fetch(`${this._options.baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: this._options.headers.authorization,
+        authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -78,10 +79,10 @@ export default class Api {
   }
 
   setAvatar(newAvatarData) {
-    return fetch(`${this._options.baseUrl}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
-        authorization: this._options.headers.authorization,
+        authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -92,42 +93,32 @@ export default class Api {
       .then((data) => {});
   }
 
-  deleteCard(clickedButtonID) {
-    return fetch(`${this._options.baseUrl}/cards/${clickedButtonID}`, {
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
-        authorization: this._options.headers.authorization,
+        authorization: this._token,
       },
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        console.log("Tarjeta eliminada", clickedButtonID);
-        clickedButtonID.remove();
-      })
       .catch((err) => console.log("Error al eliminar la tarjeta:", err));
   }
 
-  changeLikeCardStatus(clickedButtonID, isLiked) {
+  changeLikeCardStatus(cardId, isLiked) {
     const method = isLiked ? "PUT" : "DELETE";
     const body = isLiked ? JSON.stringify({ isLiked: true }) : null;
-    return fetch(`${this._options.baseUrl}/cards/${clickedButtonID}/likes`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method,
       headers: {
-        authorization: this._options.headers.authorization,
+        authorization: this._token,
         "Content-Type": "application/json",
       },
-      body,
     }).then((res) => res.json());
   }
 
   //Funciones de carga
 
   renderTextLoading(isLoading, saveButtonElement) {
-    if (isLoading) {
-      saveButtonElement.textContent = "Guardando...";
-    } else {
-      saveButtonElement.textContent = "Guardar";
-    }
+    saveButtonElement.textContent = isLoading ? "Guardando..." : "Guardar";
   }
 }

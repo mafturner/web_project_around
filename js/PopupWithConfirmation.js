@@ -1,30 +1,18 @@
 import Api from "./Api.js";
 import Popup from "./Popup.js";
 export default class PopupWithConfirmation extends Popup {
-  constructor(selectors) {
+  constructor(selectors, apiInstance) {
     super(selectors);
     this._clickedButton = null;
     this._clickedButtonID = null;
-
-    this._api = new Api({
-      baseUrl: "https://around-api.es.tripleten-services.com/v1/",
-      headers: {
-        authorization: "354781f2-b486-4ab1-9379-468b53f9329e",
-      },
-    });
+    this._api = apiInstance;
   }
 
   open(e) {
     super.open();
 
-    const clickedCard = e.target;
-    this._clickedButton = clickedCard.closest(".element-list__item .element");
+    this._clickedButton = e.target.closest(".element");
     this._clickedButtonID = this._clickedButton.id;
-    console.log(this._clickedButtonID);
-  }
-
-  close() {
-    super.close();
   }
 
   setEventListeners() {
@@ -32,29 +20,26 @@ export default class PopupWithConfirmation extends Popup {
     document.addEventListener("click", (e) => {
       const openButton = e.target.closest(this._selectors.openButtonElement);
       if (openButton) {
-        console.log("abrir confirmacion");
         this.open(e);
       }
     });
+
+    //botón de confirmación
+    document
+      .querySelector(this._selectors.confirmButtonElement)
+      .addEventListener("click", () => {
+        this._api.deleteCard(this._clickedButtonID).then(() => {
+          this._clickedButton.remove();
+          this.close();
+        });
+      });
     // Cerrar dialog confirmacion
     document
       .querySelector(this._selectors.closeButtonElement)
       .addEventListener("click", () => {
-        console.log("cerrar confirmacion");
         this.close();
       });
 
-    // Cerrar dialog confirmacion con escape
-    document.addEventListener("keydown", (event) => {
-      this._handleEscClose(event);
-    });
-    // Eliminar tarjeta
-    document
-      .querySelector(this._selectors.confirmButtonElement)
-      .addEventListener("click", () => {
-        this._api.deleteCard(this._clickedButtonID);
-        this._clickedButton.remove();
-        this.close();
-      });
+    document.addEventListener("keydown", (e) => this._handleEscClose(e));
   }
 }
